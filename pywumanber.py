@@ -19,7 +19,7 @@
 import os,urlparse,sys,time
 from ctypes import *
 from urllib2 import urlopen,URLError,HTTPError,Request
-WM_CALLBACK = CFUNCTYPE(c_int)
+WM_CALLBACK = CFUNCTYPE(c_int,c_int,POINTER(c_int))
 
 class WuManber:
   def __init__(self,keys,text,so='wumanber.so'):
@@ -136,7 +136,7 @@ class WuManber:
       wm_long = c_ulonglong(wm_ret)
       self.wm = wm_ret
       
-  def __callback__(self):
+  def __callback__(self,idx,ptr):
     """ This callback is called by the C shared library every time a match
         is found in the text to be searched. Read this method in conjunction
         with WM_CALLBACK which is defined at the beginning of this file
