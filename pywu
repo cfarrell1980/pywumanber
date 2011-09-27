@@ -38,3 +38,5 @@ else:
   nocase = 1
 count = wu.search_text(nocase=nocase,verbose=options.verbose)
 sys.stdout.write("Matches found: %d\n"%count)
+for k in wu.keydict.keys():
+  print "%s: %s"%(wu.keywords[k],wu.keydict[k])

@@ -18,8 +18,9 @@
 
 import os,urlparse,sys,time
 from ctypes import *
+from array import array
 from urllib2 import urlopen,URLError,HTTPError,Request
-WM_CALLBACK = CFUNCTYPE(c_int,c_int,POINTER(c_int))
+WM_CALLBACK = CFUNCTYPE(c_int,c_int,c_int)
 
 class WuManber:
   def __init__(self,keys,text,so='wumanber.so'):
@@ -39,6 +40,7 @@ class WuManber:
     self.text = None
     self.nocase = None # NOT A PYTHON TYPE
     self.wm = None # NOT A PYTHON TYPE
+    self.keydict = {}
     self.__loadText__(text)
     self.__loadKeywords__(keys)
         
@@ -113,6 +115,7 @@ class WuManber:
     i = 0
     for pystring in self.keywords:
       self.clist_of_cstrings[i] = c_char_p(pystring)
+      self.keydict[i] = []
       i+=1
         
   
@@ -141,7 +144,8 @@ class WuManber:
         is found in the text to be searched. Read this method in conjunction
         with WM_CALLBACK which is defined at the beginning of this file
     """
-    sys.stdout.write("callback says hi!\n")
+    idx = idx-1 # C starts counting at 1?
+    self.keydict[idx].append(ptr)
     return 0
       
   def search_text(self,nocase=True,verbose=False):
