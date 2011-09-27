@@ -1,0 +1,46 @@
+**Installation**
+================
+Use zypper in python-wumanber
+
+**Using pywumanbver**
+=====================
+The following code should do an easy search:
+
+from pywumanber import WuManber
+wm = WuManber(['list','of','keywords','you','want','to','find'],"text in which you want to search")
+wm.search_text()
+
+When you initialise a WuManber object you must pass the keywords and the string. This can be done in
+a number of ways.
+
+To pass the keywords you can use:
+ - a list
+ - a comma separated string
+ - a file with one keyword per line
+
+To pass the text you can use:
+ - a file (absolute path to file)
+ - a URL (uses urllib to get the contents)
+ - a string
+
+**Using the pywu script**
+=========================
+To make usage of pywumanber a little easier and to provide a demo a script called pywu is included
+in python-pywumanber. This is installed to /usr/bin by the rpm. Use it like this:
+
+``pywu 'gesetz,recht,freiheit' /your/text/file.txt``
+
+``pywu /your/keyword/file.txt /your/text/file.txt``
+
+``pywu /your/keyword/file.txt "a string can also be passed directly on the commandline"``
+
+``pywu 'gesetz,recht,freiheit' http://de.wikipedia.de/wiki/Gesetz``
+
+You can also modify the behaviour of the search engine with flags such as -v and -c. The flags are:
+ -v,--verbose Use this to actually return the results found
+ -c,--case-sensitive Use this to make the search case sensitive
+
+
+**Copyright, License, Authors**
+===============================
+GPL-2.0. Details to follow.
