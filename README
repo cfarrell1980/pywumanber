@@ -1,6 +1,6 @@
 **Installation**
 ================
-Use zypper in python-wumanber
+Use `zypper in python-pywumanber`. Currently, this lives in home:babelworx:python
 
 **Using pywumanbver**
 =====================
