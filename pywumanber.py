@@ -115,7 +115,7 @@ class WuManber:
     i = 0
     for pystring in self.keywords:
       self.clist_of_cstrings[i] = c_char_p(pystring)
-      self.keydict[i] = []
+      self.keydict[i] = array('l', [])
       i+=1
         
   
